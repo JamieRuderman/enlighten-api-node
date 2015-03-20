@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  p All the current users:
+  ul
+    each user in users
+      li 
+        a(href="users/#{user.id}")= user.name
+        |  (#{user.id})
