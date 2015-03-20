@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1= title
+
+  ul
+    li 
+      a(href="#{user.id}")= user.name
+      |  (#{user.id})
