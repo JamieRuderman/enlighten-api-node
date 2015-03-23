@@ -1,11 +1,17 @@
 extends layout
 
 block content
+
+  p
+    a(href="/users") back
+
   h1= title
  
   p Enlighten Id: #{user.id}
 
-  h4 Actions
+  h3 Actions
   ul
     li 
       a(href="#{index}/summary") Get summary
+
+  block action

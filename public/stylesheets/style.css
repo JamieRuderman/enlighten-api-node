@@ -1,8 +1,33 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:300,400,500,600,700);
+
 body {
+  background-color: snow;
+  color: grey;
+  font: 300 12px 'Source Code Pro', Helvetica, Arial, sans-serif;
   padding: 30px 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  background-color: white;
+  border-radius: 2px;
+  color: chocolate;
+  font-weight: 400;
+  padding: 0 4px;
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: chocolate;
+  color: snow;
+}
+
+strong {
+  font-weight: 500;
+}
+
+hr {
+  border-bottom-style: none;
+  border-color: lightgrey;
+  border-top-style: solid;
+  margin: 50px 0;
 }

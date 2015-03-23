@@ -1,6 +1,6 @@
 var express = require('express'),
     router = express.Router(),
-    Enphase = require('../controllers/enphase'),
+    Enphase = require('../lib/enphase'),
     users = require('../data.json').users;
 
 
@@ -26,8 +26,8 @@ router.get('/:id/summary', function(req, res, next) {
   var api = new Enphase({
     api: 'summary',
     user: user,
-    callback: function(data) {
-      res.render('summary', { title: user.name, user: user, data: data })
+    response: function(data) {
+      res.render('summary', { title: user.name, user: user, index: index, data: data })
     }
   });
 

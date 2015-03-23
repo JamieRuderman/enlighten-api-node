@@ -1,11 +1,9 @@
-extends layout
+extends user
 
-block content
-  h1 #{title}
- 
-  p Enlighten Id: #{user.id}
+block action
 
-  h4 Summary
+  hr
+  h3 Summary
 
   table
     each value, index in data

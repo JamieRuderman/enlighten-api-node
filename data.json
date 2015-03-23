@@ -1,8 +1,4 @@
 {
-  "api": {
-    "key": "3aaa01a221a6603a71853fc1cc2c3a5b",
-    "auth": "https://enlighten.enphaseenergy.com/app_user_auth/new?app_id=1409611176801"
-  },
   "users": [{
     "id": "4d7a45774e6a41320a",
     "name": "Enlighten Demo User"
