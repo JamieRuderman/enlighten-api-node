@@ -19,18 +19,35 @@ router.get('/:id', function(req, res, next) {
 
 
 /* Single User Summary */
-router.get('/:id/summary', function(req, res, next) {
+router.get('/:id/systems', function(req, res, next) {
   var index = req.params.id,
       user = users[index];
   
   var api = new Enphase({
-    api: 'summary',
+    api: 'systems',
     user: user,
-    response: function(data) {
-      res.render('summary', { title: user.name, user: user, index: index, data: data })
+    success: function(data) {
+      res.render('systems', { title: user.name, user: user, index: index, data: data });
+    },
+    error: function(data) {
+      res.render('api_error', { title: user.name, user: user, index: index, data: data });
     }
   });
+});
 
+/* Single User Summary */
+router.get('/:id/systems/:system', function(req, res, next) {
+  var index = req.params.id,
+      user = users[index];
+
+  var api = new Enphase({
+    api: 'summary',
+    system: req.params.system,
+    user: user,
+    success: function(data) {
+      res.render('summary', { title: user.name, user: user, index: index, data: data });
+    }
+  });
 });
 
 module.exports = router;

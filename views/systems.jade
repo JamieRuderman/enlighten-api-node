@@ -1,0 +1,17 @@
+extends user
+
+block action
+
+  hr
+  h3 Systems response
+
+  each system in data.systems
+    a(href="/users/#{index}/systems/#{system.system_id}").link Get system summary
+    table
+      each value, key in system
+        tr
+         td 
+           strong= key
+         td= value
+    br
+    br

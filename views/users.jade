@@ -6,5 +6,5 @@ block content
   ul
     each user, index in users
       li 
-        a(href="/users/#{index}")= user.name
+        a(href="/users/#{index}").link= user.name
         |  (#{user.id})
