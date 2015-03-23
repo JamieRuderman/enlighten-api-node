@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1 #{title}
+ 
+  p Enlighten Id: #{user.id}
+
+  h4 Summary
+
+  table
+    each value, index in data
+      tr
+       td 
+         strong= index
+       td= value

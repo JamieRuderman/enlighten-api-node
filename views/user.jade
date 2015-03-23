@@ -2,8 +2,10 @@ extends layout
 
 block content
   h1= title
+ 
+  p Enlighten Id: #{user.id}
 
+  h4 Actions
   ul
     li 
-      a(href="#{user.id}")= user.name
-      |  (#{user.id})
+      a(href="#{index}/summary") Get summary
