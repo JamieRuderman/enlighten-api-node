@@ -1,0 +1,17 @@
+extends user
+
+block response
+
+  ul
+    each action in actions
+      li
+        a(href='/users/#{index}/#{action.path}/#{systemId}').link= action.name
+
+  hr
+  h3= api
+
+  table
+    each value, index in data
+      tr
+        td: strong= index
+        td: pre= JSON.stringify(value).replace(/({|\,|\[)/g, '$1\n').replace(/(}|\])/g, '\n$1')

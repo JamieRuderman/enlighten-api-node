@@ -3,12 +3,21 @@ var express = require('express'),
     Enphase = require('../lib/enphase'),
     users = require('../data.json').users;
 
+var actions = [{
+      name: 'System summary',
+      path: 'summary'
+    }, {
+      name: 'Energy lifetime',
+      path: 'lifetime'
+    }, {
+      name: 'Envoys',
+      path: 'envoys'
+    }];
 
 /* All Users */
 router.get('/', function(req, res, next) {
   res.render('users', { title: 'Enlighten users', users: users });
 });
-
 
 /* Single User */
 router.get('/:id', function(req, res, next) {
@@ -17,22 +26,15 @@ router.get('/:id', function(req, res, next) {
   res.render('user', { title: user.name, user: user, index: index });
 });
 
-
 /* Single User Summary */
 router.get('/:id/systems', function(req, res, next) {
   var index = req.params.id,
       user = users[index],
       params = { 
-        title: user.name, 
-        user: user, 
+        actions: actions,
         index: index, 
-        actions: [{
-          name: 'System summary',
-          path: 'systems'
-        }, {
-          name: 'Energy lifetime',
-          path: 'lifetime'
-        }] 
+        title: user.name, 
+        user: user
       };
   
   new Enphase({
@@ -44,22 +46,35 @@ router.get('/:id/systems', function(req, res, next) {
     },
     error: function(data) {
       params.data = data;
-      res.render('api_error', params);
+      res.render('response', params);
     }
   });
 });
 
-/* Single User Summary */
-router.get('/:id/systems/:system', function(req, res, next) {
+/* System API actions */
+router.get('/:id/:api/:system', function(req, res, next) {
   var index = req.params.id,
-      user = users[index];
+      user = users[index],
+      params = { 
+        actions: actions,
+        api: req.params.api,
+        index: index, 
+        systemId: req.params.system,
+        title: user.name, 
+        user: user 
+      };
 
   new Enphase({
-    api: 'summary',
+    api: req.params.api,
     system: req.params.system,
     user: user,
     success: function(data) {
-      res.render('summary', { title: user.name, user: user, index: index, data: data });
+      params.data = data;
+      res.render('response', params);
+    },
+    error: function(data) {
+      params.data = data;
+      res.render('response', params);
     }
   });
 });
