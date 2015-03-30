@@ -82,8 +82,6 @@ router.get('/:id/:api/:system', function(req, res, next) {
         user: user 
       };
 
-console.log('\n request query', req.query, '\n');
-
   new Enphase({
     api: req.params.api,
     system: req.params.system,
