@@ -12,6 +12,19 @@ var actions = [{
     }, {
       name: 'Envoys',
       path: 'envoys'
+    }, {
+      name: 'Inventory',
+      path: 'inventory'
+    }, {
+      name: 'Stats',
+      path: 'stats'
+    }, {
+      name: 'RGM stats',
+      path: 'rgm'
+    }, {
+      name: 'Monthly production',
+      path: 'monthly',
+      query: 'start_date=2015-01-01'
     }];
 
 /* All Users */
@@ -64,9 +77,12 @@ router.get('/:id/:api/:system', function(req, res, next) {
         user: user 
       };
 
+console.log('\n request query', req.query, '\n');
+
   new Enphase({
     api: req.params.api,
     system: req.params.system,
+    query: req.query,
     user: user,
     success: function(data) {
       params.data = data;

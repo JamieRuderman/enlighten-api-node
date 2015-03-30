@@ -13,6 +13,6 @@ block response
           td
             if tableActions.length
               - var action = tableActions.shift()
-              a(href='/users/#{index}/#{action.path}/#{system.system_id}').link= action.name
+              a(href='/users/#{index}/#{action.path}/#{system.system_id}?#{action.query}').link= action.name
           td: strong= key
           td= value
