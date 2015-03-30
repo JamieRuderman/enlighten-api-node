@@ -29,7 +29,12 @@ var actions = [{
 
 /* All Users */
 router.get('/', function(req, res, next) {
-  res.render('users', { title: 'Enlighten users', users: users });
+  res.render('users', { 
+    title: 'Enlighten users', 
+    users: users,
+    redirect: 'http://' + req.headers.host + '/auth',
+    auth: Enphase().api.auth
+  });
 });
 
 /* Single User */
