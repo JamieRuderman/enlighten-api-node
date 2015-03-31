@@ -5,7 +5,8 @@ block response
   ul
     each action in actions
       li
-        a(href='/users/#{index}/#{action.path}/#{systemId}?#{action.query}').link= action.name
+        - var query = action.query ? '?' + action.query : ''
+        a(href='/users/#{index}/#{action.path}/#{systemId}#{query}').link= action.name
 
   hr
   h3= api

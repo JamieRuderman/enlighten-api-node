@@ -1,6 +1,6 @@
 var express = require('express'),
     router = express.Router(),
-    Enphase = require('../lib/enphase'),
+    enphase = require('../lib/enphase'),
     users = require('../data.json').users;
 
 var actions = [{
@@ -33,7 +33,7 @@ router.get('/', function(req, res, next) {
     title: 'Enlighten users', 
     users: users,
     redirect: 'http://' + req.headers.host + '/auth',
-    auth: Enphase().api.auth
+    auth: enphase.auth
   });
 });
 
@@ -55,9 +55,9 @@ router.get('/:id/systems', function(req, res, next) {
         user: user
       };
   
-  new Enphase({
+  new enphase.Request({
     api: 'systems',
-    user: user,
+    userId: user.id,
     success: function(data) {
       params.data = data;
       res.render('systems', params);
@@ -77,16 +77,16 @@ router.get('/:id/:api/:system', function(req, res, next) {
         actions: actions,
         api: req.params.api,
         index: index, 
-        systemId: req.params.system,
+        system: req.params.system,
         title: user.name, 
         user: user 
       };
 
-  new Enphase({
+  new enphase.Request({
     api: req.params.api,
-    system: req.params.system,
+    systemId: req.params.system,
+    userId: user.id,
     query: req.query,
-    user: user,
     success: function(data) {
       params.data = data;
       res.render('response', params);
