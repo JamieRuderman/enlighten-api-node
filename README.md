@@ -2,7 +2,7 @@
 
 Sample code and library for [NodeJS](https://nodejs.org/). Uses the [Express](http://expressjs.com/) application framework with [Jade](http://jade-lang.com/) templates.
 
-The interactions with the API are handled by an [enphase.js](link to raw file) library that could be added to your project.
+The interactions with the API are handled by an [enphase.js](lib/enphase.js) library that could be added to your project.
 
 ### Motivation
 
@@ -22,7 +22,7 @@ To provide an example of how to integrate a NodeJS project with the Enphase Enli
   To set permanently add it to your .profile or similar setup depending on your system and server configuration.
 
 
-2. Install NodeJS. Run the following if on a Mac. Otherwise visit the [NodeJS website](https://nodejs.org/) to install.
+2. Install NodeJS. Run the following if on a Mac or visit the [NodeJS](https://nodejs.org/) website to install.
   ```bash
   brew install node
   ```
@@ -39,13 +39,28 @@ To provide an example of how to integrate a NodeJS project with the Enphase Enli
 
 5. Visit http://localhost:3000 in your web browser
 
-### Code Example
+### Example
 
-Assuming you have your environmental variables set up, you can make your querys to the Enphase Enlighten Systems API by intanciating a new enphase object
-
+Assuming you have your environmental variables set up, you first require the enphase library:
 ```javascript
 var enphase = require('../lib/enphase');
 ```
+Then query the Enphase Enlighten Systems API by instantiating a new `enphase.Request` object.
+The simplest request is for a user's systems:
+```javascript
+new enphase.Request({
+  api: 'systems',
+  userId: user.id,
+  success: function(data) {
+    res.render('systemsResponse', data);
+  },
+  error: function(data) {
+    res.render('error', data);
+  }
+});
+```
+
+The most elaborate will have a `systemId` and `query`:
 ```javascript
 new enphase.Request({
   api: 'systems',
@@ -60,7 +75,7 @@ new enphase.Request({
   }
 });
 ```
-You can also access the enphase api vars directly
+You can also access the enphase api vars directly from the enphase object:
 ```javascript
 var enphaseAuthUrl = enphase.auth,
     enphaseApiKey = enphase.key;
@@ -71,4 +86,4 @@ var enphaseAuthUrl = enphase.auth,
 
 ### License
 
-MIT License (MIT)
+GNU General Public License 

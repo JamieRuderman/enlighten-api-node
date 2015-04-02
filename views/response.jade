@@ -15,4 +15,8 @@ block response
     each value, index in data
       tr
         td: strong= index
-        td: pre= JSON.stringify(value, null, 3)
+        if index == 'production_wh'
+          td= value
+            strong  (#{Math.round(value/100)*0.1} kWh)
+        else
+          td: pre= JSON.stringify(value, null, 3)
