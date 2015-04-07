@@ -77,7 +77,7 @@ router.get('/:id/:api/:system', function(req, res, next) {
         actions: actions,
         api: req.params.api,
         index: index, 
-        system: req.params.system,
+        systemId: req.params.system,
         title: user.name, 
         user: user 
       };
